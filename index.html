@@ -19,15 +19,40 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+  .dark-mode {
+    background-color: #333;
+    color: #fff;
+  }
+  .dark-mode .container {
+    background-color: #444;
+    color: #fff;
+  }
+  .dark-mode input[type="text"] {
+    color: #fff;
+    border-bottom: 1px solid #777;
+  }
+  .dark-mode button {
+    background-color: #e83350;
+    color: #fff;
+  }
+  .dark-mode button:hover {
+    background-color: #cc2a40;
+  }
   h1 {
     text-align: center;
     color: #333;
+  }
+  .dark-mode h1 {
+    color: #fff;
   }
   label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
+  }
+  .dark-mode label {
+    color: #ddd;
   }
   input[type="text"] {
     width: calc(100% - 20px);
@@ -38,6 +63,10 @@
     outline: none;
     color: #333;
   }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
   button {
     width: 48%;
     padding: 10px;
@@ -47,10 +76,6 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-right: 4%;
-  }
-  button:last-child {
-    margin-right: 0;
   }
   button:hover {
     background-color: #cc2a40;
@@ -68,9 +93,50 @@
   #discountPercentage {
     font-weight: bold;
   }
+  .switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  .switch input {
+    display: none;
+  }
+  .slider {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 14px;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+  }
+  .slider:before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: white;
+    top: -2px;
+    left: -2px;
+    transition: .4s;
+  }
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  input:checked + .slider:before {
+    transform: translateX(16px);
+  }
 </style>
 </head>
 <body>
+
+<div class="switch">
+  <label>
+    <input type="checkbox" id="modeSwitch" onchange="toggleDarkMode()">
+    <span class="slider"></span>
+  </label>
+</div>
 
 <div class="container">
   <h1>Let's Sweeten the Deal 🥳</h1>
@@ -124,6 +190,11 @@ function clearInputs() {
   document.getElementById('handlingFees').value = '';
   document.getElementById('effectivePrice').textContent = '';
 }
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
 </script>
 </body>
 </html>
+
